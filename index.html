@@ -155,12 +155,12 @@
   .hero-note { margin-top: 18px; font-size: 14px; color: rgba(255,255,255,.92); text-shadow: 0 1px 8px rgba(0,0,0,.35); }
   .hero-note a { color: #fff; font-weight: 500; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.5); white-space: nowrap; }
   /* 첫 화면 글자 등장 애니메이션 (페이지를 열 때 한 번, 위로 살짝 떠오르며 나타남) */
-  .hero-content > * { animation: heroIn 1s cubic-bezier(.2,.7,.2,1) both; }
-  .hero-content > :nth-child(1) { animation-delay: .15s; }
-  .hero-content > :nth-child(2) { animation-delay: .3s; }
-  .hero-content > :nth-child(3) { animation-delay: .5s; }
-  .hero-content > :nth-child(4) { animation-delay: .7s; }
-  .hero-content > :nth-child(5) { animation-delay: .85s; }
+  .hero-main > *, .hero-cta > * { animation: heroIn 1s cubic-bezier(.2,.7,.2,1) both; }
+  .hero-main > :nth-child(1) { animation-delay: .15s; }
+  .hero-main > :nth-child(2) { animation-delay: .3s; }
+  .hero-main > :nth-child(3) { animation-delay: .5s; }
+  .hero-cta > :nth-child(1) { animation-delay: .7s; }
+  .hero-cta > :nth-child(2) { animation-delay: .85s; }
   @keyframes heroIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
   .hero-scroll {
     position: absolute; z-index: 1; left: 50%; bottom: 20px; transform: translateX(-50%);
@@ -421,12 +421,20 @@
     .label { font-size: 11px; letter-spacing: 0.16em; }
 
     /* Hero */
-    .hero-content { width: 100%; padding-top: calc(var(--header-h) + 16px); padding-bottom: 88px; }
-    .hero-en { font-size: 10.5px; letter-spacing: 0.24em; }
-    .hero h1 { margin-top: 16px; font-size: 34px; line-height: 1.24; }
-    .hero-sub { margin-top: 20px; font-size: 15px; line-height: 1.7; }
-    .hero-actions { margin-top: 28px; }
-    .hero-note { margin-top: 16px; font-size: 13px; line-height: 1.7; }
+    .hero { display: block; min-height: 0; }
+    .hero::after { bottom: auto; height: 100%; background: linear-gradient(180deg, rgba(10,14,20,.62) 0%, rgba(10,14,20,.42) 40%, rgba(10,14,20,.7) 70%); }
+    .hero-content { width: 100%; max-width: none; padding: 0; }
+    .hero-main {
+      min-height: 76vh; min-height: 76svh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+      padding: calc(var(--header-h) + 36px) var(--gutter) 44px;
+    }
+    .hero-en { font-size: 10px; letter-spacing: 0.22em; }
+    .hero h1 { margin-top: 14px; font-size: 34px; line-height: 1.26; }
+    .hero-sub { margin-top: 18px; font-size: 15px; line-height: 1.7; }
+    .hero-cta { position: relative; background: var(--ink); padding: 28px var(--gutter) 30px; }
+    .hero-actions { margin-top: 0; }
+    .hero-note { margin-top: 16px; font-size: 13px; line-height: 1.7; color: rgba(255,255,255,.85); text-shadow: none; }
+    .hero-scroll { display: none; }
 
     /* Notice */
     .notice-inner { gap: 8px; padding-top: 22px; padding-bottom: 22px; }
@@ -500,7 +508,7 @@
     html { scroll-behavior: auto; }
     .reveal { opacity: 1; transform: none; transition: none; }
     .hero-img { animation: none; transform: none; }
-    .hero-content > * { animation: none; }
+    .hero-main > *, .hero-cta > * { animation: none; }
     .hero-scroll::after { animation: none; }
   }
 </style>
@@ -569,9 +577,12 @@
                  https://images.unsplash.com/photo-1748063578185-3d68121b11ff?w=2400&q=72&auto=format&fit=crop 2400w"
          sizes="100vw" alt="" fetchpriority="high">
     <div class="hero-content">
+      <div class="hero-main">
       <span class="hero-en">ILLEGAL BUILDING LEGALIZATION</span>
       <h1 id="hero-title">위반건축물,<br><strong>양성화 가능성부터</strong><br>확인해보세요.</h1>
       <p class="hero-sub">건축물대장과 현재 건물 상태를 확인하고 <br>양성화 가능성과 필요한 검토 방향을<br class="m-br"> 건축사가 직접 안내합니다.</p>
+      </div>
+      <div class="hero-cta">
       <div class="hero-actions">
         <a class="btn btn-white btn-strong" href="tel:01063279942" aria-label="양성화 가능성 상담하기, 010-6327-9942로 전화 걸기">
           양성화 가능성 상담하기
@@ -580,6 +591,7 @@
         <a class="btn btn-line-white" href="https://forms.gle/dCtaYijyf6UWBqAEA" target="_blank" rel="noopener" aria-label="30초 상담신청 (새 창에서 구글 폼 열림)">30초 상담신청</a>
       </div>
       <p class="hero-note">건물 주소와 현재 상황만 알려주셔도<br class="m-br"> 상담을 시작할 수 있습니다.<br>전화 <a href="tel:01063279942">010-6327-9942</a></p>
+      </div>
     </div>
     <a class="hero-scroll" href="#who" aria-label="아래로 스크롤해 상담 대상 보기">SCROLL</a>
   </section>
@@ -988,9 +1000,12 @@
   var hero = document.querySelector('.hero');
   var finalCta = document.getElementById('contact');
   var mobileCall = document.getElementById('mobile-call');
+  var mobileQuery = window.matchMedia('(max-width: 639px)');
   function onScroll() {
     var heroBottom = hero.getBoundingClientRect().bottom;
-    header.classList.toggle('solid', heroBottom <= header.offsetHeight + 1);
+    // 모바일에서는 스크롤을 시작하면 바로 헤더에 배경을 깔아 글자와 겹치지 않게 함
+    var mobileSolid = mobileQuery.matches && window.scrollY > 8;
+    header.classList.toggle('solid', mobileSolid || heroBottom <= header.offsetHeight + 1);
     var ctaVisible = finalCta.getBoundingClientRect().top < window.innerHeight;
     mobileCall.classList.toggle('show', heroBottom < window.innerHeight * 0.4 && !ctaVisible);
   }
