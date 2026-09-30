@@ -277,6 +277,7 @@
   .final-cta h2 strong { font-weight: 700; }
   .final-cta p.desc { margin-top: 24px; max-width: 600px; font-size: 17px; color: #fff; }
   .final-cta .final-actions { margin-top: 36px; display: flex; flex-direction: column; gap: 10px; }
+  .m-br { display: none; }
   .btn-num { display: none; white-space: nowrap; font-weight: 400; padding-left: 12px; border-left: 1px solid currentColor; }
   .final-cta .final-note { margin-top: 18px; font-size: 14px; color: rgba(255,255,255,.88); }
 
@@ -396,6 +397,97 @@
     .site-nav ul { gap: 22px; }
   }
 
+  /* ---------- 모바일 전용 타이포 · 배치 보정 (PC 버전에는 영향 없음) ---------- */
+  @media (max-width: 639px) {
+    /* 줄바꿈: 제목은 줄 길이를 고르게, 본문은 한 단어만 남는 줄 방지 */
+    h1, h2, h3, .hero-sub, .hero-note, .section-head p.lead, .final-cta p.desc, .notice-text { text-wrap: balance; }
+    p, dd, .answer p { text-wrap: pretty; }
+    .m-br { display: inline; }
+
+    /* 섹션 간격 */
+    .section { padding: 72px 0; }
+    .section-head { margin-bottom: 36px; }
+    .section-head .display { margin-top: 14px; }
+    .display { font-size: 30px; line-height: 1.25; }
+    .section-head p.lead { margin-top: 16px; font-size: 15.5px; line-height: 1.7; }
+    .label { font-size: 11px; letter-spacing: 0.16em; }
+
+    /* Hero */
+    .hero-content { width: 100%; padding-top: calc(var(--header-h) + 16px); padding-bottom: 88px; }
+    .hero-en { font-size: 10.5px; letter-spacing: 0.24em; }
+    .hero h1 { margin-top: 16px; font-size: 34px; line-height: 1.24; }
+    .hero-sub { margin-top: 20px; font-size: 15px; line-height: 1.7; }
+    .hero-actions { margin-top: 28px; }
+    .hero-note { margin-top: 16px; font-size: 13px; line-height: 1.7; }
+
+    /* Notice */
+    .notice-inner { gap: 8px; padding-top: 22px; padding-bottom: 22px; }
+    .notice-date { font-size: 14px; line-height: 1.6; }
+    .notice-text, .notice-link { font-size: 14px; line-height: 1.65; }
+
+    /* 이런 경우 카드 */
+    .who-grid { gap: 12px; }
+    .who-card { padding: 22px 20px; }
+    .who-card h3 { margin-top: 10px; font-size: 17px; line-height: 1.5; }
+    .who-card p { margin-top: 8px; font-size: 14.5px; line-height: 1.7; }
+    .who-cta h3 { margin-top: 0; }
+
+    /* 서비스 */
+    .services { gap: 56px; }
+    .service { gap: 20px; }
+    .service h3 { font-size: 22px; }
+    .flow { margin-top: 16px; }
+    .flow > div { padding: 13px 0; }
+    .flow dt { font-size: 11.5px; }
+    .flow dd { font-size: 14.5px; line-height: 1.7; }
+
+    /* 상담 과정 */
+    .step { padding: 24px 0; grid-template-columns: 52px 1fr; }
+    .step-num { font-size: 30px; line-height: 1.2; }
+    .step h3 { font-size: 18px; line-height: 1.45; }
+    .step p { margin-top: 6px; font-size: 14.5px; line-height: 1.7; }
+    .step .tag { margin-top: 10px; }
+
+    /* 건축사에게 상담해야 하는 이유 */
+    .intro { gap: 32px; }
+    .intro-figure { aspect-ratio: 4 / 3; }
+    .intro-text .statement { margin-top: 14px; font-size: 26px; line-height: 1.35; }
+    .intro-text p.body { margin-top: 16px; font-size: 15px; line-height: 1.75; }
+    .values { margin-top: 32px; }
+    .value { grid-template-columns: 40px 1fr; padding: 20px 0; }
+    .value h3 { font-size: 17px; line-height: 1.5; }
+    .value .kicker { font-size: 12.5px; }
+    .value p { font-size: 14.5px; line-height: 1.7; }
+
+    /* 준비사항 */
+    .checks { gap: 28px; }
+    .checks header p { margin-top: 14px; font-size: 15px; line-height: 1.7; }
+    .check-list li { grid-template-columns: 36px 1fr; padding: 15px 0; }
+    .check-list strong { font-size: 15.5px; }
+    .check-list span.d { font-size: 14px; line-height: 1.65; }
+
+    /* FAQ */
+    .faq summary { padding: 18px 0; font-size: 16px; line-height: 1.5; gap: 12px; }
+    .faq .answer { padding: 0 0 22px; font-size: 15px; line-height: 1.75; }
+
+    /* 최종 CTA */
+    .band { min-height: 0; }
+    .band .container { padding-top: 72px; padding-bottom: 72px; }
+    .final-cta h2 { margin-top: 16px; font-size: 28px; line-height: 1.3; }
+    .final-cta p.desc { margin-top: 16px; font-size: 15px; line-height: 1.7; }
+    .final-cta .final-actions { margin-top: 28px; }
+    .final-cta .final-note { font-size: 13px; line-height: 1.7; }
+
+    /* Footer */
+    .footer-inner { padding-top: 56px; }
+    .footer-name { font-size: 22px; }
+    .footer-exec { font-size: 13.5px; text-wrap: balance; }
+    .footer-card { margin-top: 28px; padding: 4px 18px; }
+    .footer-row { padding: 16px 0; font-size: 14.5px; }
+    .footer-row .note { font-size: 12.5px; }
+    .footer-disclaimer { margin-top: 24px; font-size: 12.5px; text-align: left; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     .reveal { opacity: 1; transform: none; transition: none; }
@@ -470,7 +562,7 @@
     <div class="hero-content">
       <span class="hero-en">ILLEGAL BUILDING LEGALIZATION</span>
       <h1 id="hero-title">위반건축물,<br><strong>양성화 가능성부터</strong><br>확인해보세요.</h1>
-      <p class="hero-sub">건축물대장과 현재 건물 상태를 확인하고<br>양성화 가능성과 필요한 검토 방향을 건축사가 직접 안내합니다.</p>
+      <p class="hero-sub">건축물대장과 현재 건물 상태를 확인하고 <br>양성화 가능성과 필요한 검토 방향을<br class="m-br"> 건축사가 직접 안내합니다.</p>
       <div class="hero-actions">
         <a class="btn btn-white btn-strong" href="tel:01063279942" aria-label="양성화 가능성 상담하기, 010-6327-9942로 전화 걸기">
           양성화 가능성 상담하기
@@ -478,7 +570,7 @@
         </a>
         <a class="btn btn-line-white" href="https://forms.gle/dCtaYijyf6UWBqAEA" target="_blank" rel="noopener" aria-label="30초 상담신청 (새 창에서 구글 폼 열림)">30초 상담신청</a>
       </div>
-      <p class="hero-note">건물 주소와 현재 상황만 알려주셔도 상담을 시작할 수 있습니다.<br>전화 <a href="tel:01063279942">010-6327-9942</a></p>
+      <p class="hero-note">건물 주소와 현재 상황만 알려주셔도<br class="m-br"> 상담을 시작할 수 있습니다.<br>전화 <a href="tel:01063279942">010-6327-9942</a></p>
     </div>
     <a class="hero-scroll" href="#who" aria-label="아래로 스크롤해 상담 대상 보기">SCROLL</a>
   </section>
@@ -795,7 +887,7 @@
     <div class="container reveal">
       <span class="label">Contact</span>
       <h2 id="contact-title">내 건물도<br><strong>양성화가 가능할까요?</strong></h2>
-      <p class="desc">건축물대장과 현재 건물 상태를 기준으로<br>확인해야 할 사항과 검토 방향을 안내해드립니다.</p>
+      <p class="desc">건축물대장과 현재 건물 상태를 기준으로 <br>확인해야 할 사항과<br class="m-br"> 검토 방향을 안내해드립니다.</p>
       <div class="final-actions">
         <a class="btn btn-white btn-strong" href="tel:01063279942" aria-label="양성화 가능성 상담하기, 010-6327-9942로 전화 걸기">
           양성화 가능성 상담하기<span class="btn-num">010-6327-9942</span>
@@ -803,7 +895,7 @@
         </a>
         <a class="btn btn-line-white" href="https://forms.gle/dCtaYijyf6UWBqAEA" target="_blank" rel="noopener" aria-label="30초 상담신청 (새 창에서 구글 폼 열림)">30초 상담신청</a>
       </div>
-      <p class="final-note">상담 전 건물 주소와 현재 상황을 준비해주시면 보다 정확한 안내가 가능합니다.</p>
+      <p class="final-note">상담 전 건물 주소와 현재 상황을 준비해주시면<br class="m-br"> 보다 정확한 안내가 가능합니다.</p>
     </div>
   </section>
 
