@@ -133,7 +133,7 @@
 
   /* ---------- Hero ---------- */
   .hero {
-    position: relative; height: 100vh; height: 100svh; min-height: 640px;
+    position: relative; min-height: 100vh; min-height: 100svh;
     color: #fff; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden;
     background: #1a1a1a;
   }
@@ -147,13 +147,21 @@
   .hero-en { display: block; font-size: 12px; font-weight: 400; letter-spacing: 0.32em; opacity: .85; }
   .hero h1 {
     margin-top: 20px; font-weight: 300; letter-spacing: -0.05em; line-height: 1.16;
-    font-size: clamp(36px, 8.6vw, 88px);
+    font-size: clamp(36px, min(8.6vw, 10.5vh), 88px);
   }
   .hero h1 strong { font-weight: 700; }
   .hero-sub { margin: 26px auto 0; max-width: 640px; font-size: 16px; font-weight: 400; color: #fff; text-shadow: 0 1px 10px rgba(0,0,0,.35); }
   .hero-actions { margin-top: 36px; display: flex; flex-direction: column; gap: 10px; align-items: stretch; }
   .hero-note { margin-top: 18px; font-size: 14px; color: rgba(255,255,255,.92); text-shadow: 0 1px 8px rgba(0,0,0,.35); }
   .hero-note a { color: #fff; font-weight: 500; text-decoration: none; border-bottom: 1px solid rgba(255,255,255,.5); white-space: nowrap; }
+  /* 첫 화면 글자 등장 애니메이션 (페이지를 열 때 한 번, 위로 살짝 떠오르며 나타남) */
+  .hero-content > * { animation: heroIn 1s cubic-bezier(.2,.7,.2,1) both; }
+  .hero-content > :nth-child(1) { animation-delay: .15s; }
+  .hero-content > :nth-child(2) { animation-delay: .3s; }
+  .hero-content > :nth-child(3) { animation-delay: .5s; }
+  .hero-content > :nth-child(4) { animation-delay: .7s; }
+  .hero-content > :nth-child(5) { animation-delay: .85s; }
+  @keyframes heroIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
   .hero-scroll {
     position: absolute; z-index: 1; left: 50%; bottom: 20px; transform: translateX(-50%);
     display: flex; flex-direction: column; align-items: center; gap: 10px;
@@ -492,6 +500,7 @@
     html { scroll-behavior: auto; }
     .reveal { opacity: 1; transform: none; transition: none; }
     .hero-img { animation: none; transform: none; }
+    .hero-content > * { animation: none; }
     .hero-scroll::after { animation: none; }
   }
 </style>
